@@ -26,7 +26,7 @@ class CustomDataset(Dataset):
 def train_model(model, tokenizer, dataset, learning_rate, num_epochs, device):
     data_loader = DataLoader(dataset, batch_size=1, shuffle=True)
     optimizer = AdamW(model.parameters(), lr=learning_rate)
-    scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=0, num_training_steps=-1)
+    scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=0, num_training_steps=-1, pad_token_id=tokenizer.pad_token_id)
 
     for epoch in range(num_epochs):
         for batch in data_loader:

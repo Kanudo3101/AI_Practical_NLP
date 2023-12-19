@@ -29,7 +29,7 @@ class TextDataset(Dataset):
 
 def generate_text(model, tokenizer, prompt):
     input_ids = tokenizer.encode(prompt, return_tensors='pt')
-    output = model.generate(input_ids, max_length=100, num_return_sequences=5, no_repeat_ngram_size=2)
+    output = model.generate(input_ids, max_length=100, num_return_sequences=5, no_repeat_ngram_size=2, pad_token_id=tokenizer.pad_token_id)
     return [tokenizer.decode(i, skip_special_tokens=True) for i in output]
 
 # Prepare tokenizer and model
